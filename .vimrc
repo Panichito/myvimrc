@@ -55,15 +55,30 @@ set foldmethod=manual
 set nowrap
 set clipboard=unnamedplus
 set nu
-augroup numbertoggle
- autocmd!
- autocmd BufEnter,FocusGained,InsertLeave * set rnu
- autocmd BufLeave,FocusLost,InsertEnter * set nornu
-augroup END
+
+"see numbertoggle in my github
+"augroup numbertoggle
+" autocmd!
+" autocmd BufEnter,FocusGained,InsertLeave * set rnu
+" autocmd BufLeave,FocusLost,InsertEnter * set nornu
+"augroup END
+
 augroup remember_folds
   autocmd!
   autocmd BufWinLeave * mkview
-  autocmd BufWinEnter * silent! loadview
+  autocmd BufWinEnter * silent! loadview  "you need to comment this first -> source -> uncomment
+augroup END
+
+" Highlight line number with no roughly cursorline
+hi clear CursorLine
+augroup CLClear
+    autocmd! ColorScheme * hi clear CursorLine
+augroup END
+
+"Bold current line number
+hi CursorLineNR cterm=bold
+augroup CLNRSet
+    autocmd! ColorScheme * hi CursorLineNR cterm=bold
 augroup END
 
 set diffexpr=MyDiff()
